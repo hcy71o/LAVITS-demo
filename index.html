@@ -1,0 +1,265 @@
+<!DOCTYPE html >
+<html>
+  <head style="text-align: center;">
+    <title>LA-VITS-demo: "Learning Transferable Latent Representation for Language Adaptive Text-to-Speech"</title>
+    <style>
+      div {
+        margin-bottom: 64px;
+      }
+      .first-col {
+        padding-right: 40px;
+        white-space: nowrap;
+        text-align: left;
+      }
+      .text {
+        font-style: italic;
+        color: #3a3a3a;
+      }
+      audio {
+        display: inline-block; 
+        padding:8px; 
+        width: 250px; 
+        height: 40px;
+      }
+    </style>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+  </head>
+  <body style="text-align: center;">
+    <article>
+      <header>
+        <h1>LA-VITS-demo: "Learning Transferable Latent Representation for Language Adaptive Text-to-Speech"</h1>
+      </header>
+    </article>
+      <a style="margin: 0 auto;"><b>Authors</b>: Hyungchan Yoon, Hyun-Wook Yoon, Eunwoo Song, Hong-Goo Kang</a>
+    <div>
+    <!-- <a href="https://github.com/hcy71o/SC-CNN"><h3>Code</h3></a> -->
+
+    <hr>
+    <div>
+      <a name="Abstract"><h2>Abstract</h2></a>
+      </td>
+      <div class="container" style="max-width:900px; text-align: center; margin:0 auto; margin-top: 20px; margin-bottom: 40px">
+        <p style="line-height:1.2;">
+          <font size="4">In this paper, we propose Language Adaptive VITS (LA-VITS), a novel approach designed to enhance the generalizability and scalability of neural text-to-speech (TTS) systems. We achieve this by employing a variational autoencoder (VAE) to learn a transferable latent representation. LA-VITS effectively mitigates the limitations posed by language dependence, which often arise when using a fixed set of text transcripts during the training phase. In the initial pre-training stage, our model adjusts the latent space to conform to a language-independent standard Gaussian distribution using a weak regularization technique based on normalizing flows. Then, we apply a transfer learning strategy to align this generalized latent representation with a text-conditioned prior. This process requires only a modest amount of text-speech pair data, yet consistently produces high-quality speech even for previously unseen languages. We test our proposed framework on various datasets, demonstrating its adaptability to diverse languages. This achievement establishes a strong foundation for the development of more versatile and robust multilingual TTS systems.</font>
+        </p>
+        <br>
+        <p align="center"><img src="overview.png" width="100%"></p>
+      </div>
+      
+
+      <hr>
+    <div>
+      <a name="4-2"><h2>DEMO: Language-Adaptive TTS</h2></a>
+      <a name="4-2-1"><h3>1. English</h3></a>
+      <table style="margin-left:auto;margin-right:auto;">
+        <tbody>
+            <tr>
+                <td colspan="2" class="first-col"><h4>Ground Truth</h4></td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/gt_lj_11.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/gt_lj_8.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/gt_lj_17.wav"></audio></td>
+            </tr>
+            <tr><td colspan="5"><hr></td></tr>
+            <tr>
+                <td rowspan="3" class="first-col">256</td>
+                <td>FastSpeech 2</td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/fs2_lj256_11.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/fs2_lj256_8.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/fs2_lj256_17.wav"></audio></td>
+            </tr>
+            <tr>
+              <td>VITS</td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/vits_lj256_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/vits_lj256_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/vits_lj256_17.wav"></audio></td>
+          </tr>
+            <tr>
+                <td>LA-VITS</td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/lavits_lj256_11.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/lavits_lj256_8.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/eng/lavits_lj256_17.wav"></audio></td>
+            </tr>
+            <tr><td colspan="5"><hr></td></tr>
+            <tr>
+              <td rowspan="3" class="first-col">1024</td>
+              <td>FastSpeech 2</td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/fs2_lj1024_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/fs2_lj1024_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/fs2_lj1024_17.wav"></audio></td>
+          </tr>
+          <tr>
+            <td>VITS</td>
+            <td><audio controls="" preload="none"><source src="wavs/eng/vits_lj1024_11.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/eng/vits_lj1024_8.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/eng/vits_lj1024_17.wav"></audio></td>
+        </tr>
+          <tr>
+              <td>LA-VITS</td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/lavits_lj1024_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/lavits_lj1024_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/lavits_lj1024_17.wav"></audio></td>
+          </tr>
+          <tr><td colspan="5"><hr></td></tr>
+            <tr>
+              <td rowspan="3" class="first-col">12500</td>
+              <td>FastSpeech 2</td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/fs2_ljfull_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/fs2_ljfull_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/eng/fs2_ljfull_17.wav"></audio></td>
+          </tr>
+          <tr>
+            <td>VITS</td>
+            <td><audio controls="" preload="none"><source src="wavs/eng/vits_ljfull_11.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/eng/vits_ljfull_8.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/eng/vits_ljfull_17.wav"></audio></td>
+          
+          </tr>        
+          </tr>
+        
+        </tbody>
+      </table>
+      <br>
+      <a name="4-2-1"><h3>2. Korean</h3></a>
+        <table style="margin-left:auto;margin-right:auto;">
+          <tbody>
+            <tr>
+                <td colspan="2" class="first-col"><h4>Ground Truth</h4></td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/gt11.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/gt8.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/gt17.wav"></audio></td>
+            </tr>
+            <tr><td colspan="5"><hr></td></tr>
+            
+            <tr>
+                <td rowspan="3" class="first-col">256</td>
+                <td>FastSpeech 2</td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw256_11.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw256_8.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw256_17.wav"></audio></td>
+            </tr>
+            <tr>
+              <td>VITS</td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw256_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw256_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw256_17.wav"></audio></td>
+          </tr>
+            <tr>
+                <td>LA-VITS</td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/lavits_f256_11.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/lavits_f256_8.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/kor/lavits_f256_17.wav"></audio></td>
+            </tr>
+          <tr><td colspan="5"><hr></td></tr>
+            <tr>
+              <td rowspan="3" class="first-col">1024</td>
+              <td>FastSpeech 2</td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw1024_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw1024_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw1024_17.wav"></audio></td>
+          </tr>
+          <tr>
+            <td>VITS</td>
+            <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw1024_11.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw1024_8.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw1024_17.wav"></audio></td>
+        </tr>
+          <tr>
+              <td>LA-VITS</td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/lavits_f1024_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/lavits_f1024_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/lavits_f1024_17.wav"></audio></td>
+          </tr>
+          <tr><td colspan="5"><hr></td></tr>
+            <tr>
+              <td rowspan="3" class="first-col">2048</td>
+              <td>FastSpeech 2</td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw2048_11.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw2048_8.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/kor/fs2_fkyw2048_17.wav"></audio></td>
+          </tr>
+          <tr>
+            <td>VITS</td>
+            <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw2048_11.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw2048_8.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/kor/vits_fkyw2048_17.wav"></audio></td>
+        </tr>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <a name="4-2-1"><h3>3. Japanese</h3></a>
+        <table style="margin-left:auto;margin-right:auto;">
+          <tbody>
+            <tr>
+                <td colspan="2" class="first-col"><h4>Ground Truth</h4></td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/gt_mtsk_3.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/gt_mtsk_10.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/gt_mtsk_17.wav"></audio></td>
+            </tr>
+          <tr><td colspan="5"><hr></td></tr>
+            <tr>
+                <td rowspan="3" class="first-col">256</td>
+                <td>FastSpeech 2</td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk256_3.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk256_10.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk256_17.wav"></audio></td>
+            </tr>
+            <tr>
+              <td>VITS</td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk256_3.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk256_10.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk256_17.wav"></audio></td>
+          </tr>
+            <tr>
+                <td>LA-VITS</td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/lavits_mtsk256_3.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/lavits_mtsk256_10.wav"></audio></td>
+                <td><audio controls="" preload="none"><source src="wavs/jpn/lavits_mtsk256_17.wav"></audio></td>
+            </tr>
+          <tr><td colspan="5"><hr></td></tr>
+            <tr>
+              <td rowspan="3" class="first-col">1024</td>
+              <td>FastSpeech 2</td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk1024_3.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk1024_10.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk1024_17.wav"></audio></td>
+          </tr>
+          <tr>
+            <td>VITS</td>
+            <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk1024_3.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk1024_10.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk1024_17.wav"></audio></td>
+        </tr>
+          <tr>
+              <td>LA-VITS</td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/lavits_mtsk1024_3.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/lavits_mtsk1024_10.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/lavits_mtsk1024_17.wav"></audio></td>
+          </tr>
+          <tr><td colspan="5"><hr></td></tr>
+            <tr>
+              <td rowspan="3" class="first-col">2048</td>
+              <td>FastSpeech 2</td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk2048_3.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk2048_10.wav"></audio></td>
+              <td><audio controls="" preload="none"><source src="wavs/jpn/fs2_mtsk2048_17.wav"></audio></td>
+          </tr>
+          <tr>
+            <td>VITS</td>
+            <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk2048_3.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk2048_10.wav"></audio></td>
+            <td><audio controls="" preload="none"><source src="wavs/jpn/vits_mtsk2048_17.wav"></audio></td>
+        </tr>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <hr>
+      <a name="4-2"><h2>Acknowledgement</h2></a>
+      <a name="4-2-1">This work was supported by Voice, NAVER Cloud, South Korea.</a>
+    </div>
+  </body>
+</html>
